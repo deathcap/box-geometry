@@ -37,24 +37,24 @@ var init = function() {
         ],
       }])
 
-  shader = createShader(gl, 
-"attribute vec3 position;\
-attribute vec2 uv;\
-uniform mat4 projection;\
-uniform mat4 view;\
-uniform mat4 model;\
-varying vec2 vUv;\
-void main() {\
-  vUv = uv;\
-  gl_Position = projection * view * model * vec4(position, 1.0);\
-}",
-
-"precision lowp float;\
-uniform sampler2D texture;\
-varying vec2 vUv;\
-void main() {\
-  gl_FragColor = texture2D(texture, vUv);\
-}");
+  shader = createShader(gl, [
+'attribute vec3 position;',
+'attribute vec2 uv;',
+'uniform mat4 projection;',
+'uniform mat4 view;',
+'uniform mat4 model;',
+'varying vec2 vUv;',
+'void main() {',
+'  vUv = uv;',
+'  gl_Position = projection * view * model * vec4(position, 1.0);',
+'}'].join('\n'),
+[
+'precision lowp float;',
+'uniform sampler2D texture;',
+'varying vec2 vUv;',
+'void main() {',
+'  gl_FragColor = texture2D(texture, vUv);',
+'}'].join('\n'));
 }
 
 var view = new Float32Array(16)
