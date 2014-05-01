@@ -1,12 +1,15 @@
 var createCamera = require('game-shell-orbit-camera')
 var createShell  = require('gl-now')
 var createShader = require('gl-shader')
+var createTexture= require('gl-texture2d')
+var lena         = require('lena')
 var glm          = require('gl-matrix')
 var mat4         = glm.mat4
 
 var shader
 var mesh
 var gl
+var texture
 var shell = createShell({
   clearColor: [0.75, 0.8, 0.9, 1.0]
 })
@@ -19,23 +22,38 @@ var init = function() {
   camera = createCamera(shell)
   camera.distance = 10
 
+  texture = createTexture(gl, lena)
+
   mesh = createBoxMesh(gl, [
       {
+        uv: [
+        //x  y  w  h  r
+          0, 1, 1, 1, 0, // back
+          0, 1, 1, 1, 0, // front
+          0, 1, 1, 1, 0, // top
+          0, 1, 1, 1, 0, // bottom
+          0, 1, 1, 1, 0, // left
+          0, 1, 1, 1, 0  // right
+        ],
       }])
 
   shader = createShader(gl, 
 "attribute vec3 position;\
+attribute vec2 uv;\
 uniform mat4 projection;\
 uniform mat4 view;\
 uniform mat4 model;\
+varying vec2 vUv;\
 void main() {\
+  vUv = uv;\
   gl_Position = projection * view * model * vec4(position, 1.0);\
 }",
 
 "precision lowp float;\
-uniform vec4 color;\
+uniform sampler2D texture;\
+varying vec2 vUv;\
 void main() {\
-  gl_FragColor = color;\
+  gl_FragColor = texture2D(texture, vUv);\
 }");
 }
 
@@ -54,12 +72,12 @@ var render = function(dt) {
   )
 
   shader.bind()
-  //shader.attributes.position.location = 0
+  shader.attributes.position.location = 0
   shader.uniforms.projection = proj
   shader.uniforms.view = view
   shader.uniforms.model = model
 
-  //if (skin) shader.uniforms.skin = skin.bind()
+  if (texture) shader.uniforms.texture = texture.bind()
   shader.attributes.position.pointer()
 
   mesh.bind()
