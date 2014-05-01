@@ -1,6 +1,6 @@
 {
   "name": "box-geometry",
-  "description": "",
+  "description": "cube geometry mesh generator for gl-vao",
   "version": "0.0.1",
   "main": "box-geometry.js",
   "repository": {
@@ -8,7 +8,11 @@
     "url": "git@github.com:deathcap/box-geometry.git"
   },
   "keywords": [
-    "voxel"
+    "voxel",
+    "cube",
+    "box",
+    "mesh",
+    "gl-vao"
   ],
   "dependencies": {
     "gl-vao": "^1.1.2",
