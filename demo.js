@@ -21,7 +21,6 @@ var init = function() {
 
   mesh = createBoxMesh(gl, [
       {
-        uv: [] // TODO: texture
       }])
 
   shader = createShader(gl, 

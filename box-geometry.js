@@ -133,14 +133,16 @@ var generateBoxesMesh = function(gl, info, opts) {
 
   for (var i = 0; i < cubeCount; i += 1) {
     var uvs = info[i].uv
-    for (var face = 0; face < 6; face += 1) {
-      var x = uvs[5*face + 0]
-      var y = uvs[5*face + 1]
-      var w = uvs[5*face + 2]
-      var h = uvs[5*face + 3]
-      var r = uvs[5*face + 4]
+    if (uvs) {
+      for (var face = 0; face < 6; face += 1) {
+        var x = uvs[5*face + 0]
+        var y = uvs[5*face + 1]
+        var w = uvs[5*face + 2]
+        var h = uvs[5*face + 3]
+        var r = uvs[5*face + 4]
 
-      setCubeFaceUV(6*i + face, x, y, w, h, r)
+        setCubeFaceUV(6*i + face, x, y, w, h, r)
+      }
     }
   }
 
