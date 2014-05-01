@@ -28,12 +28,12 @@ var init = function() {
       {
         uv: [
         //x  y  w  h  r
-          0, 1, 1, 1, 0, // back
-          0, 1, 1, 1, 0, // front
-          0, 1, 1, 1, 0, // top
-          0, 1, 1, 1, 0, // bottom
-          0, 1, 1, 1, 0, // left
-          0, 1, 1, 1, 0  // right
+          0, 0, 1, 1, 0, // back
+          0, 0, 1, 1, 0, // front
+          0, 0, 1, 1, 0, // top
+          0, 0, 1, 1, 0, // bottom
+          0, 0, 1, 1, 0, // left
+          0, 0, 1, 1, 0  // right
         ],
       }])
 
@@ -63,6 +63,9 @@ var model = mat4.create()
 
 var t = 0
 var render = function(dt) {
+  gl.enable(gl.CULL_FACE)
+  gl.enable(gl.DEPTH_TEST)
+
   camera.view(view)
   mat4.perspective(proj
     , Math.PI / 4
@@ -73,12 +76,14 @@ var render = function(dt) {
 
   shader.bind()
   shader.attributes.position.location = 0
+  shader.attributes.uv.location = 1
   shader.uniforms.projection = proj
   shader.uniforms.view = view
   shader.uniforms.model = model
 
   if (texture) shader.uniforms.texture = texture.bind()
   shader.attributes.position.pointer()
+  shader.attributes.uv.pointer()
 
   mesh.bind()
   mesh.draw(gl.TRIANGLES, mesh.length)
