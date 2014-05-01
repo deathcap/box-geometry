@@ -2,6 +2,7 @@
   "name": "box-geometry",
   "description": "",
   "version": "0.0.1",
+  "main": "box-geometry.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:deathcap/box-geometry.git"
@@ -10,6 +11,10 @@
     "voxel"
   ],
   "dependencies": {
+    "gl-vao": "^1.1.2",
+    "gl-matrix": "^2.1.0",
+    "gl-buffer": "^2.0.6",
+    "toarray": "0.0.1"
   },
   "license": "MIT"
 }
