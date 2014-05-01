@@ -8,6 +8,7 @@ Creates a Vertex Array Object for a 1x1x1 cube from (-0.5,-0.5,-0.5) to (+0.5.+0
 Also optionally sets UV coordinates for texturing and applies matrix transformations.
 
 For an example, run `npm start` or try the **[live demo](http://deathcap.github.io/box-geometry)**.
+Click and drag to rotate the cube (uses [game-shell-orbit-camera](https://github.com/mikolalysenko/game-shell-orbit-camera)).
 See the [avatar](https://github.com/deathcap/avatar) module for more advanced usage.
 
 Usage:
