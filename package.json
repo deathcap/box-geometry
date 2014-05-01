@@ -1,7 +1,7 @@
 {
   "name": "box-geometry",
   "description": "cube geometry mesh generator for gl-vao",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "box-geometry.js",
   "repository": {
     "type": "git",
