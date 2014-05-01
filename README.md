@@ -1,0 +1,6 @@
+# box-geometry
+
+## License
+
+MIT
+
